@@ -136,9 +136,9 @@ func main() {
   - Value Log (VLog): separate large values from LSM to reduce write amplification and improve compaction efficiency
   - Hot-Key Path: fast path for frequently accessed keys (adaptive caching and read-optimization hooks)
   - Ingest-Aware Compaction: support L0/Ln ingest pipelines (bulk load) and compaction scheduling around ingest buffers
+- Transactions + MVCC: snapshot reads, conflict detection, and write intents on top of internal keys/versioning  
 - Distributed & Consistency
   - Raft Replication: turn OscarKV into a distributed KV by adding a Raft-based replication layer without changing the storage core
-  - Transactions + MVCC: snapshot reads, conflict detection, and write intents on top of internal keys/versioning
 - Observability & Operations
   - Monitoring Dashboard: metrics endpoint + dashboard panels for WAL/LSM/table-cache/compaction stats
   - Debug/Forensics Tools: offline inspection for checkpoints, tables, and VLog segments
