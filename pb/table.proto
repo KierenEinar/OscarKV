@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "OscarKV/pb";
+
+message TableIndex {
+  repeated BlockOffset offset = 1;
+  bytes bloomFilter = 2;
+  int64 maxVersion = 3;
+  uint32 keyCount = 4;
+  uint32 staleDataSize = 5;
+  uint32 valueSize = 6;
+}
+
+message BlockOffset {
+  bytes minKey = 1;
+  uint32 offset = 2;
+  uint32 length = 3;
+}
