@@ -105,6 +105,16 @@ func (lsm *LSM) Close() error {
 	// close install queue
 	<-done
 
+	if lsm.levelManager != nil {
+		_ = lsm.levelManager.close()
+	}
+	if lsm.ckptManager != nil {
+		lsm.ckptManager.Close()
+	}
+	if lsm.wal != nil {
+		lsm.wal.Close()
+	}
+
 	return nil
 }
 

@@ -341,8 +341,9 @@ func (lm *levelManager) worker() {
 				slog.Error("persistl0 failed", "err", err)
 			}
 		case <-trigger15s.C:
-			err := lm.triggerCompaction()
-			if err != nil {
+			c := make(chan error, 1)
+			lm.compaction(c)
+			if err := <-c; err != nil {
 				slog.Error("triggerCompaction failed", "err", err)
 			}
 		case c := <-lm.trigerCompactionCh:
